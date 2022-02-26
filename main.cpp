@@ -44,6 +44,40 @@ int division(queue_t &q){
 
     return (node->prev->number / node->number);
 }
+/**
+ * Performs Sum, Substraction, Product and Division on the last two elements
+ * in the given queue.
+ * @param q: Queue  reference
+ * @param op: Operation to be executed.
+ * @param result: Stores the operation result
+ * @return True if successful, false otherwise (e.g., Unsupported operation).
+*/
+bool executeOperation(queue_t &q, char op, int &result){
+    bool res = true;
+
+    switch(op){
+        case '+':
+            result = sum(q);
+        break;
+
+        case '-':
+            result = substraction(q);
+        break;
+
+        case '*':
+            result = product(q);
+        break;
+
+        case '/':
+            result = division(q);
+        break;
+
+        default:
+            res = false;
+        break;
+    }
+    return res;
+}
 
 /**
  * Application entrypoint
