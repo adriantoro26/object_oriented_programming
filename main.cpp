@@ -1,5 +1,5 @@
 #include <iostream>
-#include "queue.h"
+#include "queue/queue.h"
 
 /**
  * Defines and typedefs
@@ -36,7 +36,7 @@ int substraction(queue_t &q){
 int product(queue_t &q){
     node_t *node = q.tail;
 
-    int product = 0;
+    int product = 1;
     for(int i = 0; i < NUMBERS_QTY; i++){
          product *= node->number;
         node = node->prev;
@@ -113,9 +113,11 @@ int main(){
         int value, result;
         char operation;
 
+        printf("> ");
+
         switch (state){
             case INPUT:
-                scanf("%f", &value);
+                scanf("%i", &value);
                 scanf("%c", &temp);
                 addToQueue(q, value);
                 showLastInQueue(q);
