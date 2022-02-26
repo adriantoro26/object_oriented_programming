@@ -110,7 +110,8 @@ int main(){
          * States
         */
         char temp;
-        int value;
+        int value, result;
+        char operation;
 
         switch (state){
             case INPUT:
@@ -127,6 +128,15 @@ int main(){
                 break;
 
             case OPERATION:
+            scanf("%c", &operation);
+                scanf("%c", &temp);
+                bool res = executeOperation(q, operation, result);
+
+                if(res)
+                    printf("%i\n", result);
+                else
+                    printf("Operation no valida \n");
+
                 state = INPUT;
                 break;
         }
