@@ -1,7 +1,14 @@
 #include <iostream>
 #include "queue.h"
 
+/**
+ * Defines and typedefs
+*/
 #define NUMBERS_QTY 2
+typedef enum {
+    INPUT,
+    OPERATION
+}states_t;
 
 /**
  * Sums all numbers in the queue
@@ -84,5 +91,45 @@ bool executeOperation(queue_t &q, char op, int &result){
 */
 int main(){
 
+    /**
+     * Queue defined
+    */
+    queue_t q = {
+        .head = NULL,
+        .tail = NULL
+    };
+    /**
+     * State machine state
+    */
+    states_t state = INPUT;
+
+    int numbersInserted = 0;
+
+    while(true){
+        /**
+         * States
+        */
+        char temp;
+        int value;
+
+        switch (state){
+            case INPUT:
+                scanf("%f", &value);
+                scanf("%c", &temp);
+                addToQueue(q, value);
+                showLastInQueue(q);
+                numbersInserted++;
+
+                if (numbersInserted == NUMBERS_QTY){
+                    numbersInserted = 0;
+                    state = OPERATION;
+                }
+                break;
+
+            case OPERATION:
+                state = INPUT;
+                break;
+        }
+    }
     return 0;
 }
