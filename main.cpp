@@ -46,10 +46,10 @@ int product(queue_t &q){
 /**
  * Divides last two numbers in the queue
 */
-int division(queue_t &q){
+float division(queue_t &q){
     node_t *node = q.tail;
 
-    return (node->prev->number / node->number);
+    return ((float) node->prev->number / (float) node->number);
 }
 /**
  * Performs Sum, Substraction, Product and Division on the last two elements
@@ -59,7 +59,7 @@ int division(queue_t &q){
  * @param result: Stores the operation result
  * @return True if successful, false otherwise (e.g., Unsupported operation).
 */
-bool executeOperation(queue_t &q, char op, int &result){
+bool executeOperation(queue_t &q, char op, float &result){
     bool res = true;
 
     switch(op){
@@ -110,7 +110,8 @@ int main(){
          * States
         */
         char temp;
-        int value, result;
+        int value;
+        float result;
         char operation;
 
         printf("> ");
@@ -135,7 +136,7 @@ int main(){
                 bool res = executeOperation(q, operation, result);
 
                 if(res)
-                    printf("%i\n", result);
+                    printf("%.2f\n", result);
                 else
                     printf("Operation no valida \n");
 
